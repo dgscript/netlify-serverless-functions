@@ -6,7 +6,7 @@ This is a guide on how to make serverless functions using Netlify!
 
 ## Steps
 
-Make sure you have npm installed to run the commands!
+Make sure you have **npm** installed to run the commands!
 
 1. In your project file, open de terminal and run:
 
@@ -51,9 +51,28 @@ exports.handler = async function() {
 }
 ```
 
-This will return `Hello World!`
+This will return `{ message: "Hello World"; }`
 
-6. There you go! You have your serverless function where you can make API calls without exposion your API key!
+--
+After you create your serverless function you can already use it to fetch data to your project!
+**Example:**
+
+In your javascript file on the frontend:
+
+```js
+async function fetchData() {
+  /* make sure to always fetch using the /.netlify patch and not the normal one! */
+  const response = await fetch(`/.netlify/functions/hello-world`);
+  const data = await response.json();
+  console.log(data); /* { message: "Hello World"; } */
+}
+```
+
+--
+
+## **IMPORTANT: Every function must have their separate file. You CAN'T use a single file for multiple functions!**
+
+6. There you go! You have your serverless function where you can make API calls without exposing your API key!
 
 **Example:**
 
