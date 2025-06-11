@@ -6,6 +6,8 @@ async function fetchData() {
   const response = await fetch(`/.netlify/functions/fetch-data?query=${query}`);
   const data = await response.json();
 
+  console.log(data);
+
   container.innerHTML = "";
 
   const newCard = document.createElement("div");
